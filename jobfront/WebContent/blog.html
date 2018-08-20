@@ -1,0 +1,24 @@
+<div class="container" ng-controller="bcontroller as bc">
+	<div
+		class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form class="form-signin" ng-submit="bc.submit()" method="post">
+			
+			<div class="form-group">
+				<label class="control-label">Enter Blog Title</label> <input
+					type="text" name="blogtitle" id="blogtitle"class="form-control" placeholder="Blog Title"
+					required ng-model="bc.blog.blogTitle">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Enter Blog Description</label> <textarea type="text"
+					name="blogdescription" id="blogdescription" class="form-control" placeholder="Blog Description" required ng-model="bc.blog.blogDescription"></textarea>
+			</div>
+			<div class="form-group">
+				<label class="control-label">Enter Blog Author</label> <input
+					name="blogauthor" id="blogauthor" type="text" class="form-control" placeholder="Blog Author"
+					required ng-model="bc.blog.blogAuthor">
+			</div>
+						<button class="btn button " type="submit">Add Blog</button>
+			<br>
+		</form>
+	</div>
+</div>

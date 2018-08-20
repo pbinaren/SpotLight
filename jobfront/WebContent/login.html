@@ -1,0 +1,18 @@
+ 		<div class="container" ng-controller="lcontroller as lc">
+ 		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+ 					<form class="form-signin" ng-submit="lc.submit()" method="post">
+                <div class="form-group" >
+                <label class="control-label" >Enter Email</label>
+                <input type="text" class="form-control" placeholder="Email" required autofocus ng-model="lc.user.email">
+                </div>
+                <div class="form-group">
+                <label class="control-label" >Enter Password</label>
+                <input type="password" class="form-control" placeholder="Password" required ng-model="lc.user.password">
+                </div>
+                <button class="btn button " type="submit">
+                    Sign in</button><br>
+                    <label class="control-label" >New User?</label>
+                    <a href="#registration">Sign Up</a>
+                </form>
+                </div> 
+            </div>

@@ -1,0 +1,40 @@
+
+<div class="container" ng-controller="rcontroller as rc">
+	<div
+		class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form class="form-signin" ng-submit="rc.submit()" method="post">
+			<div class="form-group">
+				<label class="control-label">Enter Email</label> <input
+					type="email" name="email" id="email" class="form-control" placeholder="Email" required
+					autofocus ng-model="rc.user.email">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Enter Password</label> <input
+					type="password" name="upassword" id="upassword"class="form-control" placeholder="Password"
+					required ng-model="rc.user.password">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Enter Name</label> <input type="text"
+					name="name" id="name" class="form-control" placeholder="Name" required ng-model="rc.user.name">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Enter Phone Number</label> <input
+					name="phno" id="phno" type="text" class="form-control" placeholder="Phone Number"
+					required ng-model="rc.user.phno">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Select Role</label> 
+				<select
+					class="form-control" ng-model="rc.user.role">
+					<option value="">Select a Value</option>
+					<option value="Student">Student</option>
+					<option value="Employee">Employee</option>
+					<option value="Employer">Employer</option>
+				</select>
+
+			</div>
+			<button class="btn button " type="submit">Register</button>
+			<br>
+		</form>
+	</div>
+</div>

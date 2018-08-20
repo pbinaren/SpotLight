@@ -1,0 +1,28 @@
+<div class="container" ng-controller="acontroller as ac">
+    <table class="table table-striped custab">
+    <thead>
+       <tr>
+           
+            <th>blogTitle</th>
+            <th>blogDescription</th>
+            <th>blogAuthor</th>
+            <th>Approve</th>
+            
+            <th >Reject</th>
+        </tr>
+    </thead>
+            <tr ng-repeat="b in ac.blogs">
+                
+                <td>{{b.blogTitle}}</td>
+                <td style="text-align: justify;">{{b.blogDescription}}</td>
+                <td>{{b.blogAuthor}}</td>
+                <td class="text-center"><div class='btn btn-info btn-xs' ng-click="ac.approveblog(b.id)">
+                <span class="glyphicon glyphicon-edit"></span> Approve</div></td>
+                <td class="text-center">
+                 <div class="btn btn-danger btn-xs" ng-click="ac.deleteblog(b.id)">
+                 <span class="glyphicon glyphicon-remove"></span> Reject</div></td>
+            </tr>
+           
+    </table>
+    </div>
+</div>
