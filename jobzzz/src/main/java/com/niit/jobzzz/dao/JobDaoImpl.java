@@ -37,7 +37,7 @@ public class JobDaoImpl implements JobDao {
 
 	public List<Job> selectAllJob() {
 		try {
-			return sessionFactory.getCurrentSession().createQuery("from Job").list();
+			return sessionFactory.getCurrentSession().createQuery("from Job where status="+true).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -47,6 +47,15 @@ public class JobDaoImpl implements JobDao {
 	public Job selectOneJob(int id) {
 		try {
 			return (Job) sessionFactory.getCurrentSession().createQuery("from Job where id="+id).uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<Job> selectUnapprovedJob() {
+		try {
+			return sessionFactory.getCurrentSession().createQuery("from Job where status="+false).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

@@ -1,7 +1,7 @@
 angular.module('myApp').controller('fcontroller', function($scope, fservice, $location) {
 	var self = this;
 	self.forum = {
-			
+			id: null,
 			forumTitle : '',
 			forumDescription : '',
 			
@@ -21,5 +21,12 @@ angular.module('myApp').controller('fcontroller', function($scope, fservice, $lo
 		createforum(self.forum);
 	}
 	
-	
+	function viewallforums() {
+		fservice.viewallforums().then(function(response) {
+			self.forums = response.data;
+		}, function(response) {
+			alert('No forum available');
+		})
+	}
+	viewallforums()
 })

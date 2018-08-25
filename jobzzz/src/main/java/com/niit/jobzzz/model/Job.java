@@ -29,6 +29,8 @@ public class Job {
 	private String experience;
 	
 	private int vacancies;
+	
+	private boolean status;
 
 	public int getId() {
 		return id;
@@ -100,6 +102,14 @@ public class Job {
 
 	public void setVacancies(int vacancies) {
 		this.vacancies = vacancies;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	
 }

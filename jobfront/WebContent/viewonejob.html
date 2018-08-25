@@ -48,44 +48,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', end
 	}
 
 </style>
-<div class="container" ng-controller="bcontroller as bc">
+<div class="container" ng-controller="jcontroller as jc">
 	<div class="row transparent">
 
   <div class="col-md-12">
     	  <div class="tuyin first">	
-			<span class="title">{{bc.oblog.blogTitle}}</span>
-			<div>{{bc.oblog.blogAuthor}}</div>
-			 <div class="plan-name">{{bc.oblog.createdOn}}</div>
+			<span class="title">{{jc.ojob.jobTitle}}</span>
+			<div>{{jc.ojob.location}}</div>
+			 <div class="plan-name">{{jc.ojob.companyName}}</div>
 			  <div class="text">
-				<p>{{bc.oblog.blogDescription}}</p>
+				<p>{{jc.ojob.jobDescription}}</p>
 			  </div>
+			  <div class="text">Skills Required: {{jc.ojob.skillsRequired}}</div>
+			  <div class="text">Salary: {{jc.ojob.salary}}</div>
+			  <div class="text">Experience: {{jc.ojob.experience}}</div>
+			  <div class="text">No of Vacancies: {{jc.ojob.vacancies}}</div>
 			</div>
 		</div>
 	
    
 </div>
 
-</div>
-<div class="container">
-	<div class="row">
-		<h3>Comments</h3>
-	</div>
-    
-    <div class="row">
-    <div class="col-md-10">
-    	<textarea type="text"
-					name="blogcomment" id="blogcomment" class="form-control" placeholder="Comment here" required></textarea>
-    </div>
-    <div class="col-md-2">
-    						<div class="widget-area no-padding blank">
-								<div class="status-upload">
-									<form>
-						
-								<button class="btn button " type="submit">Post</button>
-									</form>
-								</div><!-- Status Upload  -->
-							</div><!-- Widget Area -->
-						</div>
-        
-    </div>
 </div>

@@ -1,4 +1,4 @@
-angular.module('myApp').controller('bcontroller', function($scope, bservice, $location, bid) {
+angular.module('myApp').controller('bcontroller', function($scope, bservice, $location, bid,$rootScope) {
 	var self = this;
 	self.blog = {
 			blogTitle : '',
@@ -20,6 +20,8 @@ angular.module('myApp').controller('bcontroller', function($scope, bservice, $lo
 	
 	function submit()
 	{
+		self.blog.blogAuthor=$rootScope.currentuser.name;
+		alert($rootScope.currentuser.name);
 		createblog(self.blog);
 	}
 	
@@ -33,7 +35,8 @@ angular.module('myApp').controller('bcontroller', function($scope, bservice, $lo
 	
 	function viewoneblog() {
 		bservice.viewoneblog(bid.id).then(function(response) {
-			self.blog = response.data;
+			self.oblog = response.data;
+			self.blog=null;
 		}, function(response) {
 			alert('No blog available');
 		})

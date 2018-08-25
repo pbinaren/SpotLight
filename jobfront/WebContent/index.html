@@ -3,72 +3,125 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
-
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script type="text/javascript" src="js/app.js"></script>
-<script type="text/javascript" src="js/controllers/UserController.js"></script>	
-<script type="text/javascript" src="js/Service/UserService.js"></script>
-<script type="text/javascript" src="js/controllers/LoginController.js"></script>	
-<script type="text/javascript" src="js/Service/LoginService.js"></script>	
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.js"></script>
 
-<script type="text/javascript" src="js/controllers/BlogController.js"></script>	
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/controllers/UserController.js"></script>
+<script type="text/javascript" src="js/Service/UserService.js"></script>
+<script type="text/javascript" src="js/controllers/LoginController.js"></script>
+<script type="text/javascript" src="js/Service/LoginService.js"></script>
+
+<script type="text/javascript" src="js/controllers/BlogController.js"></script>
 <script type="text/javascript" src="js/Service/BlogService.js"></script>
-<script type="text/javascript" src="js/controllers/AdminController.js"></script>	
-<script type="text/javascript" src="js/Service/AdminService.js"></script>	
+<script type="text/javascript" src="js/controllers/ForumController.js"></script>
+<script type="text/javascript" src="js/Service/ForumService.js"></script>
+<script type="text/javascript" src="js/controllers/JobController.js"></script>
+<script type="text/javascript" src="js/Service/JobService.js"></script>
+<script type="text/javascript" src="js/controllers/AdminController.js"></script>
+<script type="text/javascript" src="js/Service/AdminService.js"></script>
 <title>Insert title here</title>
 <style>
 body {
-   background: rgba(179,220,237,1);
-background: -moz-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(179,220,237,1)), color-stop(50%, rgba(41,184,229,1)), color-stop(100%, rgba(188,224,238,1)));
-background: -webkit-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
-background: -o-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
-background: -ms-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
-background: linear-gradient(to right, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee', GradientType=1 ); }
-.navbar-custom{
-background-color: #7D9AA5;
-color: white;
+	background: rgba(179, 220, 237, 1);
+	background: -moz-linear-gradient(left, rgba(179, 220, 237, 1) 0%,
+		rgba(41, 184, 229, 1) 50%, rgba(188, 224, 238, 1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(179, 220, 237,
+		1)), color-stop(50%, rgba(41, 184, 229, 1)),
+		color-stop(100%, rgba(188, 224, 238, 1)));
+	background: -webkit-linear-gradient(left, rgba(179, 220, 237, 1) 0%,
+		rgba(41, 184, 229, 1) 50%, rgba(188, 224, 238, 1) 100%);
+	background: -o-linear-gradient(left, rgba(179, 220, 237, 1) 0%,
+		rgba(41, 184, 229, 1) 50%, rgba(188, 224, 238, 1) 100%);
+	background: -ms-linear-gradient(left, rgba(179, 220, 237, 1) 0%,
+		rgba(41, 184, 229, 1) 50%, rgba(188, 224, 238, 1) 100%);
+	background: linear-gradient(to right, rgba(179, 220, 237, 1) 0%,
+		rgba(41, 184, 229, 1) 50%, rgba(188, 224, 238, 1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced',
+		endColorstr='#bce0ee', GradientType=1);
+}
+
+.navbar-custom {
+	background-color: #7D9AA5;
+	color: white;
 }
 </style>
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="lcontroller as lc">
 
-<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-		<button type="button" class="navbar-toggle collapsed" 
-   data-toggle="collapse" data-target="#collapse-example" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="navbar-header">
-				<span class="navbar-brand" >SpotLight</span>
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#collapse-example"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<div class="navbar-header">
+				<span class="navbar-brand">SpotLight</span>
 			</div>
-      <div class="collapse navbar-collapse" id="collapse-example">
-			<ul class="nav navbar-nav">
-				<li><a href="#/">Home</a></li>
-				<li><a href="#about">About Us</a></li>
-				<li><a href="#contact">Contact Us</a></li>
-				
-				<li><a href="#blog">Blog</a></li>
-				<li><a href="#blogapproval">BlogApproval</a></li>
-				<li><a href="#viewallblogs">View All Blogs</a></li>
-				<li><a href="#forum">Forum</a></li>
-				<li><a href="">Job</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#login">login</a></li>
-			</ul>
+			<div class="collapse navbar-collapse" id="collapse-example">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#/">Home</a></li>
+					<li><a href="#about">About Us</a></li>
+					<li><a href="#contact">Contact Us</a></li>
+					<li><a class="dropdown dropdown-toggle" data-toggle="dropdown"
+						id="navlistitem">Blog <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#blog"> Create Blog</a></li>
+							<li><a href="#viewallblogs">View Blogs</a></li>
+							<li><a href="#blogapproval"
+								ng-show="currentuser.role=='Admin'">BlogApproval</a></li>
+						</ul></li>
+					<li><a class="dropdown dropdown-toggle" data-toggle="dropdown"
+						id="navlistitem"
+						ng-hide="currentuser.role=='' || currentuser.role=='Student' ">Job
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#job" ng-show="currentuser.role=='Employer'">
+									Add Job</a></li>
+							<li><a href="#viewalljobs"
+								ng-show="currentuser.role=='Employee'">View Jobs</a></li>
+							<li><a href="#jobapproval"
+								ng-show="currentuser.role=='Admin'">JobApproval</a></li>
+
+						</ul></li>
+					<li><a class="dropdown dropdown-toggle" data-toggle="dropdown"
+						id="navlistitem">Fourms <span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="#viewallforums">View Forums</a></li>
+
+							<li><a href="#forum" ng-show="currentuser.role=='Admin'">Add
+									Forum</a></li>
+						</ul></li>
+
+					<li><a href="#login" ng-hide="currentuser.name">login</a></li>
+					<li><a class="dropdown dropdown-toggle" data-toggle="dropdown"
+						id="navlistitem" ng-show="currentuser.name">{{currentuser.name}}<span
+							class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li ng-show="currentuser.name!=''"><a ng-click="lc.logout()">Logout</a></li>
+						</ul></li>
+
+
+				</ul>
 			</div>
 		</div>
 	</nav>
