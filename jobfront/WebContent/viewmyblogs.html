@@ -51,7 +51,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', end
 <div class="container" ng-controller="bcontroller as bc">
 	<div class="row transparent">
 
-  <div class="col-md-12" ng-repeat="b in bc.blogs">
+  <div class="col-md-12" ng-repeat="b in bc.myblogs">
     	  <div class="tuyin first">	
 			<span class="title">{{b.blogTitle}}</span>
 			<div>{{b.blogAuthor}}</div>
@@ -59,7 +59,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', end
 			  <div class="text">
 				<p>{{b.blogDescription}}</p>
 			  </div>
+			  <button type="button" class="btn btn-default" ng-click="bc.editblog(b.blogid)">Edit Blog   <span class="	glyphicon glyphicon-pencil"></span> </button>
 			<button type="button" class="btn btn-default" ng-click="bc.selectoneblog(b.blogid)">Comment    <span class="	glyphicon glyphicon-comment"></span> </button>
+ <button type="button" class="btn btn-default" ng-click="bc.deleteblog(b.blogid)">Delete Blog   <span class="glyphicon glyphicon-trash"></span> </button>
+
 		  </div>
 		</div>
   

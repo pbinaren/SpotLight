@@ -2,7 +2,7 @@ angular.module('myApp').controller('acontroller', function($scope, aservice, $lo
 	var self = this;
 	
 	self.blog = {
-			id : null,
+			blogid : 0,
 			blogName : '',
 			blogTitle : '',
 			blogDescription : '',

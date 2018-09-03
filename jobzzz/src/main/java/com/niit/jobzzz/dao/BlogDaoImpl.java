@@ -26,9 +26,11 @@ public class BlogDaoImpl implements BlogDao {
 		}
 	}
 
-	public boolean deleteBlog(int id) {
+	public boolean deleteBlog(int blogid) {
 		try {
-			sessionFactory.getCurrentSession().delete(selectOneBlog(id));
+			sessionFactory.getCurrentSession().delete(selectOneBlog(blogid));
+			sessionFactory.getCurrentSession().createQuery("delete from BlogComment where blogid=" + blogid)
+					.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,16 +40,18 @@ public class BlogDaoImpl implements BlogDao {
 
 	public List<Blog> selectAllBog() {
 		try {
-			return sessionFactory.getCurrentSession().createQuery("from Blog where status="+true).list();
+			return sessionFactory.getCurrentSession()
+					.createQuery("from Blog where status=" + true + " order by blogid desc").list();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	public Blog selectOneBlog(int id) {
+	public Blog selectOneBlog(int blogid) {
 		try {
-			return (Blog) sessionFactory.getCurrentSession().createQuery("from Blog where id="+id).uniqueResult();
+			return (Blog) sessionFactory.getCurrentSession().createQuery("from Blog where blogid=" + blogid)
+					.uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -56,7 +60,17 @@ public class BlogDaoImpl implements BlogDao {
 
 	public List<Blog> selectUnapprovedBlog() {
 		try {
-			return sessionFactory.getCurrentSession().createQuery("from Blog where status="+false).list();
+			return sessionFactory.getCurrentSession().createQuery("from Blog where status=" + false).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<Blog> MyBlogs(String Email) {
+		try {
+			return sessionFactory.getCurrentSession()
+					.createQuery("from Blog where blogAuthoremail ='" + Email + "' order by blogid desc").list();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

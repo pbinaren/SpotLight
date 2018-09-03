@@ -26,7 +26,7 @@ public class BlogCommentController
 	@Autowired
 	BlogCommentDAo blogCommentDAO;
 	
-	@GetMapping
+	@GetMapping("/{blogid}")
 	public ResponseEntity<List<BlogComment>> getAllBlogComments(@PathVariable("blogid") int blogid)
 	{
 	List<BlogComment> comments = blogCommentDAO.selectmyBogComment(blogid);

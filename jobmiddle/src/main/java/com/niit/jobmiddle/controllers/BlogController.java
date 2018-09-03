@@ -38,10 +38,10 @@ public class BlogController
 	}
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Blog> getOneBlog(@PathVariable("id") int id)
+	@GetMapping("/{blogid}")
+	public ResponseEntity<Blog> getOneBlog(@PathVariable("blogid") int blogid)
 	{
-	Blog blog = blogDAO.selectOneBlog(id);
+	Blog blog = blogDAO.selectOneBlog(blogid);
 	if(blog != null)
 	{
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
@@ -51,6 +51,8 @@ public class BlogController
 		return new ResponseEntity<Blog>(blog, HttpStatus.NO_CONTENT);
 	}
 	}
+	
+	
 	
 	@PostMapping
 	public ResponseEntity<Void> insertOrUpdateBlog(@RequestBody Blog blog)

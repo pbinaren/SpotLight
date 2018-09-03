@@ -41,20 +41,20 @@ public class AdminController {
 	}
 	}
 	
-	@DeleteMapping("blog/{id}")
-	public ResponseEntity<Void> deleteBlog(@PathVariable("id") int id)
+	@DeleteMapping("blogreject/{blogid}")
+	public ResponseEntity<Void> deleteBlog(@PathVariable("blogid") int blogid)
 	{
-	if(blogDAO.deleteBlog(id)) {
+	if(blogDAO.deleteBlog(blogid)) {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}else {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 	}
 	
-	@PutMapping("blogapprove/{id}")
-	public ResponseEntity<Void> updateBlog(@PathVariable("id") int id)
+	@PutMapping("blogapprove/{blogid}")
+	public ResponseEntity<Void> updateBlog(@PathVariable("blogid") int blogid)
 	{
-		Blog blog =blogDAO.selectOneBlog(id);
+		Blog blog =blogDAO.selectOneBlog(blogid);
 		blog.setStatus(true);
 		
 	if(blogDAO.createAndUpdateBlog(blog)) {
@@ -78,7 +78,7 @@ public class AdminController {
 	}
 	}
 	
-	@DeleteMapping("job/{id}")
+	@DeleteMapping("jobreject/{id}")
 	public ResponseEntity<Void> deleteJob(@PathVariable("id") int id)
 	{
 	if(jobDAO.deleteJob(id)) {

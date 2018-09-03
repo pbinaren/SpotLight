@@ -19,6 +19,7 @@ public class BlogComment {
 	private String blogcomment;
 	private String postedby;
 	private String createdOn;
+	
 	public int getCommid() {
 		return commid;
 	}

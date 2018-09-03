@@ -29,7 +29,7 @@ public class BlogCommentDaoImpl implements BlogCommentDAo {
 
 	public boolean deleteBlogComment(int id) {
 		try {
-			BlogComment blogcomment =(BlogComment) sessionFactory.getCurrentSession().createQuery("from BlogComment where id="+id).uniqueResult();
+			BlogComment blogcomment =(BlogComment) sessionFactory.getCurrentSession().createQuery("from BlogComment where commid="+id).uniqueResult();
 			sessionFactory.getCurrentSession().delete(blogcomment);
 			return true;
 		} catch (Exception e) {
@@ -41,7 +41,17 @@ public class BlogCommentDaoImpl implements BlogCommentDAo {
 
 	public List<BlogComment> selectmyBogComment(int blogid) {
 		try {
-			return sessionFactory.getCurrentSession().createQuery("from Blog").list();
+			return sessionFactory.getCurrentSession().createQuery("from BlogComment where blogid="+blogid+"order by commid desc").list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public BlogComment selectOneBlogComment(int id) {
+		try {
+			BlogComment blogcomment =(BlogComment) sessionFactory.getCurrentSession().createQuery("from BlogComment where commid="+id).uniqueResult();
+			return blogcomment;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

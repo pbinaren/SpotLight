@@ -1,16 +1,25 @@
 <style>
 body {
-   background: rgba(179,220,237,1);
-background: -moz-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(179,220,237,1)), color-stop(50%, rgba(41,184,229,1)), color-stop(100%, rgba(188,224,238,1)));
-background: -webkit-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
-background: -o-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
-background: -ms-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
-background: linear-gradient(to right, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee', GradientType=1 );}
-.transparent .tuyin 
-	{
-	margin-top: 20px; 
+	background: rgba(179, 220, 237, 1);
+	background: -moz-linear-gradient(left, rgba(179, 220, 237, 1) 0%,
+		rgba(41, 184, 229, 1) 50%, rgba(188, 224, 238, 1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(179, 220, 237,
+		1)), color-stop(50%, rgba(41, 184, 229, 1)),
+		color-stop(100%, rgba(188, 224, 238, 1)));
+	background: -webkit-linear-gradient(left, rgba(179, 220, 237, 1) 0%,
+		rgba(41, 184, 229, 1) 50%, rgba(188, 224, 238, 1) 100%);
+	background: -o-linear-gradient(left, rgba(179, 220, 237, 1) 0%,
+		rgba(41, 184, 229, 1) 50%, rgba(188, 224, 238, 1) 100%);
+	background: -ms-linear-gradient(left, rgba(179, 220, 237, 1) 0%,
+		rgba(41, 184, 229, 1) 50%, rgba(188, 224, 238, 1) 100%);
+	background: linear-gradient(to right, rgba(179, 220, 237, 1) 0%,
+		rgba(41, 184, 229, 1) 50%, rgba(188, 224, 238, 1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced',
+		endColorstr='#bce0ee', GradientType=1);
+}
+
+.transparent .tuyin {
+	margin-top: 20px;
 	background-color: rgba(255, 255, 255, 0.37);
 	border: 1px solid #F7F7F7;
 	border-radius: 5px;
@@ -18,74 +27,88 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', end
 	padding: 4%;
 	text-align: center;
 	width: 97%;
-	min-height: 315px;
 	position: relative;
 	margin-bottom: 25px;
-	 }
-.transparent .tuyin .title 
-	{
-	text-align: center; 
+}
+
+.transparent .tuyin .title {
+	text-align: justify;
 	color: #FFF;
-	font-size: 49px; 
-	}
-.transparent .tuyin .plan-name 
-	{
+	font-size: 49px;
+}
+
+.transparent .tuyin .plan-name {
 	font-size: 20px;
 	font-weight: 400;
 	border-bottom: 1px solid #FFF;
 	padding-bottom: 15px;
 	padding: 10px
-	}
+}
 
-.transparent .tuyin .text
-	{
-	margin-top: 20px; 
+.transparent .tuyin .text {
+	margin-top: 20px;
 	color: #474747;
 	font-weight: 300;
-	margin-bottom: 13px; 
+	margin-bottom: 13px;
 	font-size: 16px;
 	text-align: justify;
-	}
-
+}
 </style>
 <div class="container" ng-controller="bcontroller as bc">
 	<div class="row transparent">
 
-  <div class="col-md-12">
-    	  <div class="tuyin first">	
-			<span class="title">{{bc.oblog.blogTitle}}</span>
-			<div>{{bc.oblog.blogAuthor}}</div>
-			 <div class="plan-name">{{bc.oblog.createdOn}}</div>
-			  <div class="text">
-				<p>{{bc.oblog.blogDescription}}</p>
-			  </div>
+		<div class="col-md-12">
+			<div class="tuyin first">
+				<span class="title">{{bc.blog.blogTitle}}</span>
+				<div>{{bc.blog.blogAuthor}}</div>
+				<div class="plan-name">{{bc.blog.createdOn}}</div>
+				<div class="text">
+					<p>{{bc.blog.blogDescription}}</p>
+				</div>
 			</div>
 		</div>
-	
-   
-</div>
+
+
+	</div>
 
 </div>
-<div class="container">
+<div class="container" ng-controller="bcontroller as bc">
 	<div class="row">
 		<h3>Comments</h3>
 	</div>
-    
-    <div class="row">
-    <div class="col-md-10">
-    	<textarea type="text"
-					name="blogcomment" id="blogcomment" class="form-control" placeholder="Comment here" required></textarea>
-    </div>
-    <div class="col-md-2">
-    						<div class="widget-area no-padding blank">
-								<div class="status-upload">
-									<form>
-						
-								<button class="btn button " type="submit">Post</button>
-									</form>
-								</div><!-- Status Upload  -->
-							</div><!-- Widget Area -->
-						</div>
-        
-    </div>
+
+	<div class="row" ng-show="bc.blog.blogAuthor!=currentuser.name">
+		<form ng-submit="bc.submitComment()" method="post">
+			<div class="col-md-10">
+
+				<textarea type="text" name="blogcomment" id="blogcomment"
+					class="form-control" placeholder="Comment here" required
+					ng-model="bc.blogComment.blogcomment"></textarea>
+			</div>
+			<div class="col-md-2">
+				<div class="widget-area no-padding blank">
+					<div class="status-upload">
+
+
+						<button class="btn button " type="submit">Post</button>
+
+					</div>
+					<!-- Status Upload  -->
+				</div>
+				<!-- Widget Area -->
+			</div>
+		</form>
+	</div>
+	
+	
+	<div class="transparent" ng-show="bc.blogComments!=''">
+		<div class="col-md-12">
+			<div class="tuyin first" ng-repeat="bcblog in bc.blogComments">
+				<span class="text">{{bcblog.blogcomment}}</span>
+				<br/><span class="text">{{bcblog.postedby}}</span> 
+				<span class="text">{{bcblog.createdOn}}</span>
+				
+			</div>
+		</div>
+	</div>
 </div>

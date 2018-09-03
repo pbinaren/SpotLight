@@ -18,7 +18,7 @@ app.factory('aservice',function($http)
     }
     function deleteblog(id)
     {
-    	var url="http://localhost:8080/jobmiddle/admin/blog/"+id;
+    	var url="http://localhost:8080/jobmiddle/admin/blogreject/"+id;
 		return $http.delete(url);
     } 
     
@@ -34,7 +34,7 @@ app.factory('aservice',function($http)
     }
     function deletejob(id)
     {
-    	var url="http://localhost:8080/jobmiddle/admin/job/"+id;
+    	var url="http://localhost:8080/jobmiddle/admin/jobreject/"+id;
 		return $http.delete(url);
     } 
     

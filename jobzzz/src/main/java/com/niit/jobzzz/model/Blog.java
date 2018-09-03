@@ -1,21 +1,17 @@
 package com.niit.jobzzz.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Blog {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int blogid;
 	
 	private String blogTitle;
 	
@@ -23,18 +19,20 @@ public class Blog {
 	private String blogDescription;
 	
 	private String blogAuthor;
+	private String blogAuthorEmail;
 	
 	private boolean status;
 	
 	private String createdOn;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	
+	
+	public int getBlogid() {
+		return blogid;
+	}
+	public void setBlogid(int blogid) {
+		this.blogid = blogid;
+	}
 	public String getBlogTitle() {
 		return blogTitle;
 	}
@@ -64,6 +62,14 @@ public class Blog {
 	public void setCreatedOn(String createdOn) {
 		this.createdOn = createdOn;
 	}
+	public String getBlogAuthoremail() {
+		return blogAuthorEmail;
+	}
+	public void setBlogAuthoremail(String blogAuthorEmail) {
+		this.blogAuthorEmail = blogAuthorEmail;
+	}
+	
+	
 	
 	
 }
