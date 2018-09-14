@@ -48,7 +48,7 @@ public class ForumDaoImpl implements ForumDao {
 
 	public Forum selectOneForum(int id) {
 		try {
-			return (Forum) sessionFactory.getCurrentSession().createQuery("from Forum where id="+id).uniqueResult();
+			return (Forum) sessionFactory.getCurrentSession().createQuery("from Forum where foid="+id).uniqueResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

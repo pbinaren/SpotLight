@@ -37,38 +37,24 @@ body {
 }
 
 .transparent .tuyin .plan-name {
-	font-size: 20px;
-	font-weight: 400;
+	
 	border-bottom: 1px solid #FFF;
-	padding-bottom: 15px;
-	padding: 10px
 }
 
 .transparent .tuyin .text {
-	margin-top: 20px;
+	
 	color: #474747;
-	font-weight: 300;
-	margin-bottom: 13px;
-	font-size: 16px;
 	text-align: justify;
 }
 </style>
-<div class="container" ng-controller="bcontroller as bc">
+<div class="container" ng-controller="fcontroller as fc">
 	<div class="row transparent">
 
 		<div class="col-md-12">
 			<div class="tuyin first">
-				<span class="title">{{bc.blog.blogTitle}}</span>
-				<div>{{bc.blog.blogAuthor}}</div>
-				<div class="plan-name">{{bc.blog.createdOn}}</div>
+				<span class="title">{{fc.forum.forumTitle}}</span>
 				<div class="text">
-					<p>{{bc.blog.blogDescription}}</p>
-				</div>
-				<div ng-show="bc.blog.blogAuthoremail!=currentuser.email">
-				<button type="button" class="btn btn-default" ng-click="bc.updatelike(bc.blog.blogid)">{{bc.likedislike.likecount}} 
-				<span class="glyphicon glyphicon-thumbs-up"></span> </button>
-				<button type="button" class="btn btn-default" ng-click="bc.updatedislike(bc.blog.blogid)">{{bc.likedislike.dislikecount}}
-				<span class="glyphicon glyphicon-thumbs-down"></span> </button>
+					<p>{{fc.forum.forumDescription}}</p>
 				</div>
 			</div>
 		</div>
@@ -77,18 +63,30 @@ body {
 	</div>
 
 </div>
-<div class="container" ng-controller="bcontroller as bc">
+<div class="container" ng-controller="fcontroller as fc">
 	<div class="row">
-		<h3>Comments</h3>
+		<h3>Discussion</h3>
+	</div>
+	
+		<div class="transparent" ng-show="fc.forumDiscussions!=''">
+		<div class="col-md-12">
+			<div class="tuyin first" ng-repeat="fdis in fc.forumDiscussions">
+				<span class="text">{{fdis.fdiscussion}}</span>
+				<br/><span class="text">{{fdis.postedby}}</span> 
+				<span class="text">{{fdis.createdOn}}</span>
+				
+			</div>
+		</div>
 	</div>
 
-	<div class="row" ng-show="bc.blog.blogAuthoremail!=currentuser.email">
-		<form ng-submit="bc.submitComment()" method="post">
+
+	<div class="row" >
+		<form ng-submit="fc.submitDiscussion()" method="post">
 			<div class="col-md-10">
 
 				<textarea type="text" name="blogcomment" id="blogcomment"
 					class="form-control" placeholder="Comment here" required
-					ng-model="bc.blogComment.blogcomment"></textarea>
+					ng-model="fc.forumDiscussion.fdiscussion"></textarea>
 			</div>
 			<div class="col-md-2">
 				<div class="widget-area no-padding blank">
@@ -104,19 +102,5 @@ body {
 			</div>
 		</form>
 	</div>
-	
-	
-	<div class="transparent" ng-show="bc.blogComments!=''">
-		<div class="col-md-12">
-			<div class="tuyin first" ng-repeat="bcblog in bc.blogComments">
-				<span class="text">{{bcblog.blogcomment}}</span>
-				<br/><span class="text">{{bcblog.postedby}}</span> 
-				<span class="text">{{bcblog.createdOn}}</span>
-				<br>
-				<div ng-show="bc.blog.blogAuthoremail==currentuser.email">
-				<button type="button" class="btn btn-default" ng-click="bc.deleteblogcomment(bcblog.commid)"> <span class="glyphicon glyphicon-trash"></span> </button>
-				</div>
-			</div>
-		</div>
-	</div>
+
 </div>

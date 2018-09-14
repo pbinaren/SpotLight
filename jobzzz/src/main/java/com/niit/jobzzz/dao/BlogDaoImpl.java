@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.jobzzz.model.Blog;
+import com.niit.jobzzz.model.LikeDislike;
 
 @Repository("blogDAO")
 @Transactional
@@ -76,5 +77,26 @@ public class BlogDaoImpl implements BlogDao {
 			return null;
 		}
 	}
+
+	public boolean updatelike(LikeDislike ld) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(ld);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public LikeDislike selectLikeDislike(int id) {
+		try {
+			return (LikeDislike) sessionFactory.getCurrentSession().createQuery("from LikeDislike where blogid="+id)
+					.uniqueResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 
 }

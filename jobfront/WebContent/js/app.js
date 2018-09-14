@@ -1,9 +1,12 @@
 var app = angular.module("myApp", [ "ngRoute", "ngCookies" ]);
 app.value('bid', {
-	id : 31
+	id : 50
 });
 app.value('jid', {
 	id : 1
+});
+app.value('fid', {
+	id : 49
 });
 app.config(function($routeProvider) {
 	$routeProvider.when("/", {
@@ -28,6 +31,8 @@ app.config(function($routeProvider) {
 		templateUrl : "forum.html"
 	}).when("/viewallforums", {
 		templateUrl : "viewallforums.html"
+	}).when("/viewoneforum", {
+		templateUrl : "viewoneforum.html"
 	}).when("/job", {
 		templateUrl : "job.html"
 	}).when("/jobapproval", {
@@ -51,7 +56,7 @@ app
 								var isLoggedIn = $rootScope.usersingnedin;
 								var role = $rootScope.currentuser.role;
 								var studPages = [ '/blog', '/viewallblogs',
-										'/viewoneblog', '/viewallforums','viewmyblogs' ]
+										'/viewoneblog', '/viewallforums','viewmyblogs','/viewoneforum' ]
 								var empPages = [ '/viewalljobs', '/viewonejob' ]
 								var compPages = [ '/job' ]
 								var adminPages = [ '/jobapproval',

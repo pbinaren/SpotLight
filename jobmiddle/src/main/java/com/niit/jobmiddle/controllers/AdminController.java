@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.jobzzz.dao.BlogDao;
 import com.niit.jobzzz.dao.JobDao;
+import com.niit.jobzzz.dao.NotificationDao;
 import com.niit.jobzzz.model.Blog;
 import com.niit.jobzzz.model.Job;
+import com.niit.jobzzz.model.Notification;
 
 @RestController
 @RequestMapping(value="/admin")
@@ -26,6 +28,9 @@ public class AdminController {
 	
 	@Autowired
 	JobDao jobDAO;
+	
+	@Autowired
+	NotificationDao notdao;
 	
 	@GetMapping("/blogs")
 	public ResponseEntity<List<Blog>> getAllBlogs()
@@ -44,7 +49,16 @@ public class AdminController {
 	@DeleteMapping("blogreject/{blogid}")
 	public ResponseEntity<Void> deleteBlog(@PathVariable("blogid") int blogid)
 	{
-	if(blogDAO.deleteBlog(blogid)) {
+		Blog blog =blogDAO.selectOneBlog(blogid);
+		
+	if(blogDAO.deleteBlog(blogid)) 
+	{
+		Notification n=new Notification();
+		n.setBlogTitle(blog.getBlogTitle());
+		n.setEmail(blog.getBlogAuthoremail());
+		n.setStatus("Rejected");
+		n.setViewed(false);
+		notdao.createupdatenotification(n);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}else {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
@@ -57,7 +71,16 @@ public class AdminController {
 		Blog blog =blogDAO.selectOneBlog(blogid);
 		blog.setStatus(true);
 		
-	if(blogDAO.createAndUpdateBlog(blog)) {
+	if(blogDAO.createAndUpdateBlog(blog))
+	{
+		
+
+		Notification n=new Notification();
+		n.setBlogTitle(blog.getBlogTitle());
+		n.setEmail(blog.getBlogAuthoremail());
+		n.setStatus("Approved");
+		n.setViewed(false);
+		notdao.createupdatenotification(n);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}else {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

@@ -3,9 +3,15 @@
 
   <div class="panel panel-default" ng-repeat="f in fc.forums">
     <div class="panel-heading">{{f.forumTitle}}</div>
-    <div class="panel-body" style="text-align: justify;">{{f.forumDescription}}
-    
-    
+    <div class="panel-body" style="text-align: justify;">
+    <div class="row">
+    <div class="col-md-10">
+    {{f.forumDescription}}</div>
+    <div class="col-md-2">
+    <button type="button" class="btn btn-default" ng-click="fc.selectoneforum(f.foid)">Discuss   
+     <span class="	glyphicon glyphicon-comment"></span> </button>
+     </div>
+    </div>
     </div>
    
   </div>

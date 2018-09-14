@@ -15,14 +15,28 @@ angular.module('myApp').controller('bcontroller', function($scope, $route, bserv
 			blogcomment : '',
 			postedby : '',
 			createdOn : null
-	}
+	};
+	self.likedislike = {
+			lid: 0,
+			blogid: 0,
+			likecount: 0,
+			dislikecount: 0
+	};
+	
 	self.submit = submit;
 	self.submitComment = submitComment;
+	self.reset =reset;
+	
+	
+	viewallblogs()
+	viewoneblog()
+	viewallblogComments()
+	viewmyblogs()
 
 	function createblog(blog) {
 		bservice.createblog(blog).then(function(response) {
 			alert('blog added');
-			self.blog=null;
+			reset();
 		}, function(errResponse) {
 			alert('blog not added');
 		})
@@ -37,6 +51,10 @@ angular.module('myApp').controller('bcontroller', function($scope, $route, bserv
 		createblog(self.blog);
 	}
 	
+	function reset(){
+		self.blog=null;
+	}
+	
 	function viewallblogs() {
 		bservice.viewallblogs().then(function(response) {
 			self.blogs = response.data;
@@ -48,6 +66,7 @@ angular.module('myApp').controller('bcontroller', function($scope, $route, bserv
 	function viewmyblogs() {
 		bservice.viewmyblogs($rootScope.currentuser.email).then(function(response) {
 			self.myblogs = response.data;
+			viewmylike();
 		}, function(response) {
 			self.myblogs=null;
 		})
@@ -56,7 +75,8 @@ angular.module('myApp').controller('bcontroller', function($scope, $route, bserv
 	function viewoneblog() {
 		bservice.viewoneblog(bid.id).then(function(response) {
 			self.blog = response.data;
-		}, function(response) {
+			viewmylike();
+		}, function(errResponse) {
 			alert('No blog available');
 		})
 	}
@@ -106,9 +126,44 @@ angular.module('myApp').controller('bcontroller', function($scope, $route, bserv
 		})
 	}
 	
+	self.deleteblogcomment =function(id) {
+		bservice.deleteblogcomment(id).then(function(response) {
+			alert('blog comment deleted')
+			$route.reload();
+		}, function(errResponse) {
+			alert('NO Blog Found');
+		})
+	}
 	
-	viewmyblogs()
-	viewallblogs()
-	viewoneblog()
-	viewallblogComments()
+	function viewmylike(){
+		bservice.viewlikedislike(bid.id).then(function(response) {
+			self.likedislike = response.data;
+			alert("hi");
+		}, function(response) {
+			self.likedislike = response.data;
+			alert("bye");
+		})
+	}
+	
+	self.updatelike =function(id) {
+		self.likedislike.blogid =bid.id;
+		self.likedislike.likecount=(self.likedislike.likecount+1);
+		bservice.createlikedislike(self.likedislike).then(function(response){
+			
+		},function(errResponse){
+			
+		})
+	}
+	
+	self.updatedislike =function(id) {
+		self.likedislike.blogid =bid.id;
+		self.likedislike.dislikecount=(self.likedislike.dislikecount+1);
+		bservice.createlikedislike(self.likedislike).then(function(response){
+			
+		},function(errResponse){
+			
+		})
+	}
+	
+	
 })

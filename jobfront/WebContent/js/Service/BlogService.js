@@ -13,6 +13,9 @@ app.factory('bservice',function($http)
 			createblogcomment: createblogcomment,
 			viewallblogComments: viewallblogComments,
 			deleteblog:deleteblog,
+			deleteblogcomment: deleteblogcomment,
+			viewlikedislike: viewlikedislike,
+			createlikedislike: createlikedislike,
 	};
 	return factory;
     function createblog(blog) 
@@ -50,4 +53,21 @@ app.factory('bservice',function($http)
     	var blogurl = url2 +"/blog/"+id;
         return $http.delete(blogurl);
     }
+    
+    function deleteblogcomment(id) 
+    {
+    	var blogcommenturl = url1 +"/blogcomment/"+id;
+        return $http.delete(blogcommenturl);
+    }
+    
+    function viewlikedislike(blogid) 
+    {
+        return $http.get(url+"/ld/"+blogid);
+    }
+    
+    function createlikedislike(likedislike) 
+    {
+        return $http.post(url+"/ld",likedislike);
+    }
+    
  });

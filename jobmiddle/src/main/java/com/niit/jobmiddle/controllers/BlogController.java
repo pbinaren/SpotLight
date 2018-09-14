@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.jobzzz.dao.BlogDao;
 import com.niit.jobzzz.model.Blog;
+import com.niit.jobzzz.model.LikeDislike;
 
 @RestController
 @RequestMapping(value="blog")
@@ -52,6 +53,21 @@ public class BlogController
 	}
 	}
 	
+	@GetMapping("ld/{id}")
+	public ResponseEntity<LikeDislike> getLikeDislike(@PathVariable("id") int id)
+	{
+	LikeDislike ld = blogDAO.selectLikeDislike(id);
+	if(ld != null)
+	{
+		return new ResponseEntity<LikeDislike>(ld, HttpStatus.OK);
+	}
+	else
+	{
+		LikeDislike ld1 =new LikeDislike();
+		ld1.setBlogid(id);
+		return new ResponseEntity<LikeDislike>(ld1, HttpStatus.FOUND);
+	}
+	}
 	
 	
 	@PostMapping
@@ -66,4 +82,14 @@ public class BlogController
 	}
 	
 	
+	@PostMapping("/ld")
+	public ResponseEntity<Void> insertOrUpdateLike(@RequestBody LikeDislike ld)
+	{
+		
+	if(blogDAO.updatelike(ld)) {
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}else {
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+	}
 }
